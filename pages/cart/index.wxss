@@ -1,1 +1,6 @@
-/* pages/cart/index.wxss */
+.reviece_address_row .address_btn {
+  padding: 20rpx;
+}
+.reviece_address_row .address_btn button {
+  width: 60%;
+}
