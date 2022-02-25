@@ -20,7 +20,7 @@
             <swiper-item wx:for="{{swiperList}}"
             wx:key="goods_id"
             >
-            <navigator>
+            <navigator url="/pages/goods_detail/index?goosd_id{{item.navigator_url}}">
                 <image mode="widthFix" src="{{item.image_src}}"></image>
             </navigator>
             </swiper-item>
@@ -31,6 +31,8 @@
       <navigator
       wx:for="{{cateList}}"
       wx:key="name"
+      url="/pages/category/index"
+      open-type="switchTab"
       >
       <image mode="widthFix" src="{{item.image_src}}"></image>
       </navigator>
@@ -54,6 +56,7 @@
       wx:for-item="item2"
       wx:for-index="index2"
       wx:key="name"
+      url="/pages/goods_list/index?query={item2.name}"
       >
       <image mode="widthFix" src="{{item2.image_src}}" />
       </navigator>

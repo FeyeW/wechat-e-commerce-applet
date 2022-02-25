@@ -5,62 +5,110 @@ Page({
      * 页面的初始数据
      */
     data: {
-
+        tabs: [{
+                id: 0,
+                value: '体验问题',
+                isActive: true
+            },
+            {
+                id: 1,
+                value: '商品、商家投诉',
+                isActive: false,
+            },
+        ],
+        chooseImage: [],
+        textVal: ''
     },
-
-    /**
-     * 生命周期函数--监听页面加载
-     */
-    onLoad: function (options) {
-
+    UpLoadImages: [],
+    //标题点击事件 从子组件传递过来
+    handletabsItemChange(e) {
+        //1 获取被点击的标题索引
+        const { index } = e.detail
+            //2 修改源数组
+        let { tabs } = this.data
+        tabs.forEach((v, i) => i === index ? v.isActive = true : v.isActive = false)
+            //3 赋值到data中
+        this.setData({
+            tabs
+        })
     },
+    handleChooseImg() {
+        //调用小程序内置的选择图片api
+        wx.chooseImage({
+            count: 9,
+            sizeType: ['original', 'compressed'],
+            sourceType: ['album', 'camera'],
+            success: (result) => {
+                this.setData({
+                    chooseImage: [...this.data.chooseImage, ...result.tempFilePaths]
+                })
+            },
 
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function () {
-
+        });
     },
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function () {
-
+    handleRemoveImg(e) {
+        const { index } = e.currentTarget.dataset;
+        let { chooseImage } = this.data
+        chooseImage.splice(index, 1)
+        this.setData({
+            chooseImage
+        })
     },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function () {
-
+    handleTextInput(e) {
+        this.setData({
+            textVal: e.detail.value
+        })
     },
+    handleFormSubmit() {
+        const { textVal, chooseImage } = this.data
+        if (!textVal.trim()) {
+            wx.showToast({
+                title: '输入不合法',
+                icon: 'none',
+                mask: true,
+            });
+            return
+        }
 
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function () {
+        wx.showLoading({
+            title: '正在上传中',
+            mask: true
+        })
 
-    },
+        if (chooseImage.length != 0) {
+            chooseImage.forEach((v, i) => {
+                wx.uploadFile({
+                    url: ' https://images.ac.cn/Home/Index/UploadAction/',
+                    filePath: v,
+                    name: "file",
+                    formData: {},
+                    success: (result) => {
+                        let url = JSON.parse(result.data).url
+                        this.UpLoadImages.push(url)
 
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
+                        console.log('chengg')
+                        if (i === chooseImage.length - 1) {
+                            wx.hideLoading();
+                            this.setData({
+                                textVal: '',
+                                chooseImage: []
+                            })
+                            wx.navigateBack({
+                                delta: s
+                            });
+                        }
+                    },
 
-    },
+                });
 
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function () {
+            })
+        } else {
+            wx.hideLoading()
+            wx.navigateBack({
+                delta: 1
+            });
+        }
 
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
 
     }
 })
