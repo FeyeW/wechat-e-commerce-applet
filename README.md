@@ -1,37 +1,19 @@
 # 微信电商小程序
 
 #### 介绍
-黑马电商微信小程序练习的源代码
+基于小程序原生MINA框架开发的电商小程序项目的个人练习demo
 
 #### 软件架构
-基础原生微信框架开发电商小程序  
+原生MINA框架、小程序原生API开发
+最新免费数据接口文档：https://www.it120.cc/
+该小程序使用的接口文档：https://www.showdoc.com.cn/128719739414963/2513235043485226
+
+#### 注意事项
+
+1.  该个人小程序项目不能实现支付功能
+2.  功能未完全完善，仅作为练习使用
+
+#### 小程序效果图
+![image](https://user-images.githubusercontent.com/51194194/175496029-42893628-6bf5-435f-8c5b-0d4b12dd20db.png)
 
 
-#### 安装教程
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 使用说明
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 参与贡献
-
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
-
-
-#### 特技
-
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
